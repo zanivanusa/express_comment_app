@@ -1,0 +1,16 @@
+<h1>Vprašanja:</h1>
+{{#each vprasanja}}
+  <h2>Naslov:{{naslov}}</h2>
+  <p>vsebina: {{vsebina}}</p>
+  <p>Oznake: {{oznake}}</p>
+  <p>Datum: {{ datum }}</p>
+  <p>Vprašal: {{ askedBy.username }}</p>
+  <button onclick="location.href='/vprasanja/{{_id}}'" type="button">poglej Pogovore</button>
+{{#if enakPosted}}
+<form id="delete-form" action="/vprasanja/odstrani/{{_id}}" method="POST">
+  <button type="submit">Delete</button>
+</form>
+{{/if}}
+    <hr/>
+{{/each}}
+ 

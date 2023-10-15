@@ -1,0 +1,16 @@
+<h1>Zastavi Vprašanje</h1>
+<form action="/vprasanja" method="post">
+  <div class="mb-3">
+    <label for="title" class="form-label">Title</label>
+    <input type="text" class="form-control" name="naslov" placeholder="Enter a title" required>
+  </div>
+  <div class="mb-3">
+    <label for="body" class="form-label">Vprašanje</label>
+  </div>
+    <textarea class="form-control" name="vsebina" rows="5" placeholder="Enter your question here" required></textarea>
+   <div class="mb-3">
+    <label for="tags" class="form-label">Tags (separated by commas)</label>
+    <input type="text" class="form-control" name="oznake" placeholder="Enter tags here">
+  </div>
+  <button type="submit" class="btn btn-primary">Pošlji</button>
+</form>

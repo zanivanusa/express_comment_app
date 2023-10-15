@@ -1,0 +1,13 @@
+<h1>{{vprasanje.naslov}}</h1>
+<p>{{vprasanje.vsebina}}</p>
+<h2>Answers:</h2>
+{{#each vprasanje.answers}}
+  <p>{{this.answer}}</p>
+
+{{/each}}
+
+<form method="POST" action="/vprasanja/{{vprasanje._id}}/odgovori">
+  <label for="answer">Answer:</label><br>
+  <textarea id="answer" name="answer"></textarea><br>
+  <button type="submit">Submit Answer</button>
+</form>

@@ -1,0 +1,78 @@
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">
+      <h1>{{vprasanje.naslov}}</h1>
+    </div>
+    <div class="card-body">
+      vsebina:
+      <p class="card-text">{{vprasanje.vsebina}}</p>
+      <p class="card-text"><small class="text-muted">Oznake: {{vprasanje.oznake}}</small></p>
+      <p class="card-text"><small class="text-muted">vprasanje postavil: {{vprasanje.askedBy.username}}</small></p>
+      <p>Datum: {{ vprasanje.datum }}</p>
+
+    </div>
+    <div class="card-footer">
+      <form action="/vprasanja/{{vprasanje._id}}" method="POST">
+        <div class="form-group">
+          <label for="odgovor">odgovorite:</label>
+        </div>
+        <textarea class="form-control" id="odgovor" name="text" rows="3" required></textarea>
+        <button type="submit" action="/vprasanja/{{_id}}" class="btn btn-primary">pošlji</button>
+      </form>
+      <hr>
+    </div>
+  </div>
+
+  <!-- Loop through each answer and display it in a separate card -->
+
+{{#each vprasanje.odgovori }}
+    {{#if najOdgovor}}
+        <div class="card-body"  style="background-color: lightcyan;">
+        <p class="card-text" >ta odgovor je izbran kot resitev</p>
+        <p class="card-text">{{this.text}}</p>
+        <p class="card-text"><small class="text-muted">Answered ffffby: {{this.askedBy.username}}</small></p>
+          <p>Datum: {{ datum }}</p>
+
+    {{#if AvtorLahkoIzbere}}
+      <div class="card mt-3">
+        <form id="izbran-form" action="/vprasanja/{{this.postedOn._id}}/izbran/{{this._id}}" method="POST">
+          <button type="submit">odstrani kot odgovor(nisem implementiral)</button>
+        </form>
+    {{/if}}   
+        {{#if this.lahkoZbriseOdgovor}}
+          <form id="delete-form" action="/vprasanja/delete/{{_id}}" method="POST">
+            <button type="submit">Delete</button>
+          </form>
+        {{/if}}
+        <hr>
+    {{/if}}
+      </div>
+    </div>
+  {{/each}}
+
+{{#each vprasanje.odgovori }}
+    {{#if najOdgovor}}
+    {{else}}
+        <div class="card-body" style="background-color: lightgray;">
+        <p class="card-text">{{this.text}}</p>
+        <p class="card-text"><small class="text-muted">Answered ffffby: {{this.askedBy.username}}</small></p>
+          <p>Datum: {{ datum }}</p>
+
+    {{#if AvtorLahkoIzbere}}
+      <div class="card mt-3">
+        <form id="izbran-form" action="/vprasanja/{{this.postedOn._id}}/izbran/{{this._id}}" method="POST">
+          <button type="submit">izberi za odgovor</button>
+        </form>
+    {{/if}}   
+        {{#if this.lahkoZbriseOdgovor}}
+          <form id="delete-form" action="/vprasanja/delete/{{_id}}" method="POST">
+            <button type="submit">Delete</button>
+          </form>
+        {{/if}}
+  <hr>
+    {{/if}}
+      </div>
+    </div>
+  {{/each}}
+</div>
+

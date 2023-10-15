@@ -1,0 +1,28 @@
+<h1>moja vprasanja</h1>
+
+<ul class="list-group">
+  {{#each vprasanja}}
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-10">
+          <h3 class="badge badge-primary">{{naslov}}</h3>
+          <p>{{vsebina}}</p>
+          <span class="badge badge-primary">{{oznake}}</span>
+          <p>
+            vprašal: <span class="text-muted"> {{askedBy.username}}</span>
+          </p>
+        </div>
+        <div class="col-md-2">
+            <button onclick="location.href='/vprasanja/{{_id}}'" type="button">poglej Pogovore</button>
+       {{#if enakPosted}}
+  <form id="delete-form" action="/vprasanja/odstrani/{{_id}}" method="POST">
+  <button type="submit">Delete</button>
+  </form>
+  {{/if}}
+
+        </div>
+      </div>
+      <hr>
+    </li>
+  {{/each}}
+</ul>
