@@ -4,3 +4,5 @@ an express app where we can make comments on posts, reply to comments from certa
 Start the program with 
 ``` bash
 npm run dev
+```
+then go to localhost:3000 and try the app out
